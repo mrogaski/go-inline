@@ -1,0 +1,102 @@
+run:
+  concurrency: 4
+  timeout: 10m
+  issues-exit-code: 1
+  tests: true
+  skip-dirs-use-default: true
+  allow-parallel-runners: false
+
+output:
+  format: colored-line-number
+
+linters:
+  enable-all: true
+  disable:
+    - deadcode
+    - exhaustivestruct
+    - exhaustruct
+    - goerr113
+    - golint
+    - ifshort
+    - interfacer
+    - ireturn # broken
+    - maligned
+    - nosnakecase
+    - rowserrcheck
+    - scopelint
+    - structcheck
+    - sqlclosecheck
+    - varcheck
+    - wastedassign
+
+linters-settings:
+  cyclop:
+    max-complexity: 15
+    package-average: 0.0
+    skip-tests: true
+  dupl:
+    threshold: 100
+  funlen:
+    lines: 100
+    statements: 50
+  goconst:
+    min-len: 2
+    min-occurrences: 2
+  gci:
+    sections:
+      - standard
+      - default
+      - prefix(github.com/mrogaski/go-inline)
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - experimental
+      - opinionated
+      - performance
+      - style
+  gocyclo:
+    min-complexity: 15
+  goimports:
+    local-prefixes: github.com/mrogaski/go-inline
+  golint:
+    min-confidence: 0.8
+  govet:
+    check-shadowing: true
+  ireturn:
+    allow:
+      - error
+      - generic
+      - stdlib
+  lll:
+    line-length: 140
+  maligned:
+    suggest-new: true
+  misspell:
+    locale: US
+  tagliatelle:
+    case:
+      rules:
+        json: snake
+  varnamelen:
+    ignore-names:
+      - ok
+    ignore-decls:
+      - r io.Reader
+
+issues:
+  max-same-issues: 0
+  exclude-use-default: false
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - bodyclose
+        - cyclop
+        - dupl
+        - errcheck
+        - errchkjson
+        - forcetypeassert
+        - funlen
+        - gocyclo
+        - gosec
+        - varnamelen
+        - wrapcheck

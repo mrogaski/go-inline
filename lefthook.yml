@@ -1,0 +1,18 @@
+#
+# https://github.com/evilmartians/lefthook
+#
+pre-commit:
+  commands:
+    fmt:
+      run: go fmt ./...
+    vet:
+      run: go vet ./...
+    gofumpt:
+      run: gofumpt -w -l .
+    lint:
+      run: golangci-lint run ./...
+
+test:
+  commands:
+    test:
+      run: go test ./...
