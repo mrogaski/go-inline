@@ -1,4 +1,4 @@
-name: codacy analysis
+name: quality assurance
 
 on:
   push:
@@ -19,3 +19,6 @@ jobs:
 
       - name: Codacy Analysis CLI
         uses: codacy/codacy-analysis-cli-action@v4.2.0
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
