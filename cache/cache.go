@@ -4,7 +4,7 @@ package cache
 import (
 	"fmt"
 
-	"github.com/mrogaski/go-inline/internal/pkg/pool"
+	"github.com/mrogaski/go-inline/internal/pkg/dictionary"
 )
 
 // BackingStoreAccessor is a generic interface defining the access methods for the backing store that the
@@ -16,14 +16,14 @@ type BackingStoreAccessor[K comparable, V any] interface {
 
 // LRUCache is a cache implementation with a least-recently-used replacement policy.
 type LRUCache[K comparable, V any] struct {
-	pool    *pool.LinkedHashMap[K, V]
+	pool    *dictionary.LinkedHashMap[K, V]
 	maxSize int
 	store   BackingStoreAccessor[K, V]
 }
 
 // NewLRUCache constructs a new LRUCache object with the maximum size set to maxSize.
 func NewLRUCache[K comparable, V any](store BackingStoreAccessor[K, V], maxSize int) *LRUCache[K, V] {
-	return &LRUCache[K, V]{pool: pool.NewLinkedHashMap[K, V](), maxSize: maxSize, store: store}
+	return &LRUCache[K, V]{pool: dictionary.NewLinkedHashMap[K, V](), maxSize: maxSize, store: store}
 }
 
 // Get returns either a cached entry for the key, if one is currently in the cached entry set, or an entry retrieved

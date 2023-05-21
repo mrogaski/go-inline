@@ -1,5 +1,5 @@
-// Package pool is a cache entry pool implemented as a linked hash map.
-package pool
+// Package dictionary is a cache entry pool implemented as a linked hash map.
+package dictionary
 
 import (
 	"container/list"

@@ -1,17 +1,17 @@
-package pool_test
+package dictionary_test
 
 import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/mrogaski/go-inline/internal/pkg/pool"
+	"github.com/mrogaski/go-inline/internal/pkg/dictionary"
 )
 
 func TestNewLinkedMap(t *testing.T) {
 	t.Parallel()
 
-	got := pool.NewLinkedHashMap[string, string]()
+	got := dictionary.NewLinkedHashMap[string, string]()
 
 	assert.NotEmpty(t, got)
 }
@@ -19,7 +19,7 @@ func TestNewLinkedMap(t *testing.T) {
 func TestLinkedMap_empty(t *testing.T) {
 	t.Parallel()
 
-	m := pool.NewLinkedHashMap[string, string]()
+	m := dictionary.NewLinkedHashMap[string, string]()
 
 	got, ok := m.Get("A")
 
@@ -31,7 +31,7 @@ func TestLinkedMap_empty(t *testing.T) {
 func TestLinkedMap_single_element(t *testing.T) {
 	t.Parallel()
 
-	m := pool.NewLinkedHashMap[string, string]()
+	m := dictionary.NewLinkedHashMap[string, string]()
 
 	m.Add("A", "alpha")
 
@@ -50,7 +50,7 @@ func TestLinkedMap_single_element(t *testing.T) {
 func TestLinkedMap_multiple_elements(t *testing.T) {
 	t.Parallel()
 
-	m := pool.NewLinkedHashMap[string, string]()
+	m := dictionary.NewLinkedHashMap[string, string]()
 
 	m.Add("A", "alpha")
 	m.Add("B", "bravo")
@@ -71,7 +71,7 @@ func TestLinkedMap_multiple_elements(t *testing.T) {
 func TestLinkedMap_overwrite_element(t *testing.T) {
 	t.Parallel()
 
-	m := pool.NewLinkedHashMap[string, string]()
+	m := dictionary.NewLinkedHashMap[string, string]()
 
 	m.Add("A", "alpha")
 	m.Add("B", "baker")
@@ -88,7 +88,7 @@ func TestLinkedMap_overwrite_element(t *testing.T) {
 func TestLinkedMap_EvictLeastRecent(t *testing.T) {
 	t.Parallel()
 
-	m := pool.NewLinkedHashMap[string, string]()
+	m := dictionary.NewLinkedHashMap[string, string]()
 
 	m.Add("A", "alpha")
 	m.Add("B", "bravo")
