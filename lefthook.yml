@@ -12,7 +12,3 @@ pre-commit:
     lint:
       run: golangci-lint run ./...
 
-test:
-  commands:
-    test:
-      run: go test ./...

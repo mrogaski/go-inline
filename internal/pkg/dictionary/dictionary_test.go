@@ -90,6 +90,10 @@ func TestLinkedMap_EvictLeastRecent(t *testing.T) {
 
 	m := dictionary.NewLinkedHashMap[string, string]()
 
+	m.EvictLeastRecent()
+
+	assert.Equal(t, 0, m.Size())
+
 	m.Add("A", "alpha")
 	m.Add("B", "bravo")
 	m.Add("C", "charlie")
