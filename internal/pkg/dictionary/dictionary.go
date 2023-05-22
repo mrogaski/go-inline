@@ -3,7 +3,6 @@ package dictionary
 
 import (
 	"container/list"
-	"fmt"
 	"sync"
 )
 
@@ -77,23 +76,21 @@ func (m *LinkedHashMap[K, V]) Get(key K) (V, bool) {
 }
 
 // EvictLeastRecent removes the entry which has been accessed least recently.
-func (m *LinkedHashMap[K, V]) EvictLeastRecent() error {
+func (m *LinkedHashMap[K, V]) EvictLeastRecent() {
 	m.mutex.Lock()
 	defer m.mutex.Unlock()
 
 	elem := m.entryList.Front()
 	if elem == nil {
-		return nil
+		return
 	}
 
 	entry, ok := elem.Value.(Entry[K, V])
 	if !ok {
-		return fmt.Errorf("invalid pool entry: %v", elem.Value)
+		return
 	}
 
 	m.entryList.Remove(elem)
 
 	delete(m.entryMap, entry.key)
-
-	return nil
 }

@@ -94,7 +94,7 @@ func TestLinkedMap_EvictLeastRecent(t *testing.T) {
 	m.Add("B", "bravo")
 	m.Add("C", "charlie")
 
-	_ = m.EvictLeastRecent()
+	m.EvictLeastRecent()
 
 	assert.Equal(t, 2, m.Size())
 

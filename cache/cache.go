@@ -40,7 +40,7 @@ func (c *LRUCache[K, V]) Get(key K) (V, error) {
 	}
 
 	for c.pool.Size() >= c.maxSize {
-		_ = c.pool.EvictLeastRecent()
+		c.pool.EvictLeastRecent()
 	}
 
 	c.pool.Add(key, result)
